@@ -26,6 +26,7 @@
                         <th scope="col" class="px-6 py-3">
                             Harga Produk
                         </th>
+                        <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,13 @@
                         <td class="px-6 py-4">
                             Rp{{ number_format($harga[$index], 0, "", ".") }}
                         </td>
+                        <td>
+                            <form action="{{ route('produk.delete', $id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure want to delete {{ $item }}?')">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -51,6 +59,7 @@
     </div>
 
     <!-- <form method="POST" action="{{ route('produk.simpan')}}">
+        <h1 class="text-2xl">Input Produk</h1>
         @csrf
         <table class="table">
             <tr>
